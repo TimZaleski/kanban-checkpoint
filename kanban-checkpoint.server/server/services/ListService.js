@@ -2,13 +2,20 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class ListService {
-
   async findById(id) {
     const list = await dbContext.Lists.findById(id)
     if (!list) {
       throw new BadRequest('Invalid Id')
     }
     return list
+  }
+
+  async getListsByKanban(kanbanId) {
+    const lists = await dbContext.Lists.find(list => list.kanbanId === kanbanId).populate('kanban')
+    if (!lists) {
+      throw new BadRequest('Invalid Id')
+    }
+    return lists
   }
 
   async create(body) {

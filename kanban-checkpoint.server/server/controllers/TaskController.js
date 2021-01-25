@@ -1,16 +1,16 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
-import { listService } from '../services/ListService'
 import { taskService } from '../services/TaskService'
+import { commentService } from '../services/CommentService'
 
-export class ListController extends BaseController {
+export class TaskController extends BaseController {
   constructor() {
-    super('api/lists')
+    super('api/tasks')
     this.router
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:id', this.getById)
-      .get('/:id/tasks', this.getTasksByList)
+      .get('/:id/comments', this.getCommentsByTask)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -18,16 +18,25 @@ export class ListController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      const data = await listService.findById(req.params.id)
+      const data = await taskService.findById(req.params.id)
       res.send(data)
     } catch (error) {
       next(error)
     }
   }
 
-  async getTasksByList(req, res, next) {
+  async getCommentsByTask(req, res, next) {
     try {
-      const data = await taskService.getTasksByList(req.params.id)
+      const data = await commentService.getCommentsByTask(req.params.id)
+      res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getComments(req, res, next) {
+    try {
+      const data = await commentService.findById({ task: req.params.id })
       res.send(data)
     } catch (error) {
       next(error)
@@ -36,7 +45,7 @@ export class ListController extends BaseController {
 
   async create(req, res, next) {
     try {
-      const data = await listService.create(req.body)
+      const data = await taskService.create(req.body)
       res.status(201).send(data)
     } catch (error) {
       next(error)
@@ -46,7 +55,7 @@ export class ListController extends BaseController {
   async edit(req, res, next) {
     try {
       req.body.id = req.params.id
-      const data = await listService.edit(req.body)
+      const data = await taskService.edit(req.body)
       res.send(data)
     } catch (error) {
       next(error)
@@ -55,7 +64,7 @@ export class ListController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      await listService.delete(req.params.id)
+      await taskService.delete(req.params.id)
       res.send('deleted')
     } catch (error) {
       next(error)

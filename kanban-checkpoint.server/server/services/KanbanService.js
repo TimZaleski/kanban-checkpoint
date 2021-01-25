@@ -2,8 +2,6 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class KanbanService {
-
-
   async find(query = {}) {
     const kanbans = await dbContext.Kanbans.find(query).populate('creator')
     return kanbans
