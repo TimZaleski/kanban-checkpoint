@@ -37,7 +37,7 @@ export class KanbanController extends BaseController {
 
   async getLists(req, res, next) {
     try {
-      let data = await listService.find({ kanban: req.params.id })
+      let data = await listService.findById({ kanban: req.params.id })
       res.send(data)
     } catch (error) {
       next(error)
