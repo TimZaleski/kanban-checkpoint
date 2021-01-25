@@ -66,7 +66,7 @@ export class KanbanController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      await kanbanService.delete(req.params.id)
+      await kanbanService.delete(req.params.id, req.userInfo.id)
       res.send('deleted')
     } catch (error) {
       next(error)
