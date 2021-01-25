@@ -11,7 +11,7 @@ class CommentService {
   }
 
   async getCommentsByTask(taskId) {
-    const comments = await dbContext.Comments.find(comment => comment.taskId === taskId).populate('task')
+    const comments = await dbContext.Comments.find(comment => comment.taskId === taskId).populate('task creator')
     if (!comments) {
       throw new BadRequest('Invalid Id')
     }

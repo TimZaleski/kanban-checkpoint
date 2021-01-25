@@ -11,7 +11,7 @@ class ListService {
   }
 
   async getListsByKanban(kanbanId) {
-    const lists = await dbContext.Lists.find(list => list.kanbanId === kanbanId).populate('kanban')
+    const lists = await dbContext.Lists.find(list => list.kanbanId === kanbanId).populate('kanban creator')
     if (!lists) {
       throw new BadRequest('Invalid Id')
     }

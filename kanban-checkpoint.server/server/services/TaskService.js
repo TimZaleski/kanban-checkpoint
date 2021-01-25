@@ -11,7 +11,7 @@ class TaskService {
   }
 
   async getTasksByList(listId) {
-    const tasks = await dbContext.Tasks.find(task => task.listId === listId).populate('list')
+    const tasks = await dbContext.Tasks.find(task => task.listId === listId).populate('list creator')
     if (!tasks) {
       throw new BadRequest('Invalid Id')
     }
