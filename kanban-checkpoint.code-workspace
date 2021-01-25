@@ -2,10 +2,12 @@
 {
   "folders": [
     {
-      "path": "kanban-checkpoint.client"
+      "path": "kanban-checkpoint.client",
+      "name": "client"
     },
     {
-      "path": "kanban-checkpoint.server"
+      "path": "kanban-checkpoint.server",
+      "name": "server"
     }
   ],
   "settings": {
