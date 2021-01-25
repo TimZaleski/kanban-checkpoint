@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const Kanban = new Schema(
   {
     title: { type: String, required: true },
-    creatorId: { type: String, ref: 'Account', required: true }
+    creatorId: { type: String }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
