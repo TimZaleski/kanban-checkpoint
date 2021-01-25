@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 // const ObjectId = Schema.Types.ObjectId
 const Comment = new Schema(
   {
-    title: { type: String, required: true },
+    body: { type: String, required: true },
     creatorId: { type: String, ref: 'Account', required: true },
     taskId: { type: String, ref: 'Task', required: true }
   },
