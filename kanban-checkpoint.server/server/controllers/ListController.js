@@ -9,11 +9,21 @@ export class ListController extends BaseController {
     this.router
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('/:id', this.getAll)
       .get('/:id', this.getById)
       .get('/:id/tasks', this.getTasksByList)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
+  }
+
+  async getAll(req, res, next) {
+    try {
+      const data = await listService.getAll(req.query)
+      res.send(data)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getById(req, res, next) {
