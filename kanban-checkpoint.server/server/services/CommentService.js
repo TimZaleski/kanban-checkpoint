@@ -3,15 +3,15 @@ import { BadRequest } from '../utils/Errors'
 
 class CommentService {
   async findById(id) {
-    const comment = await dbContext.Comments.findById(id)
+    const comment = await dbContext.Comments.findById(id).populate('creator task')
     if (!comment) {
       throw new BadRequest('Invalid Id')
     }
     return comment
   }
 
-  async getCommentsByTask(taskId) {
-    const comments = await dbContext.Comments.find(comment => comment.taskId === taskId).populate('task creator')
+  async getCommentsByTask(query = {}) {
+    const comments = await dbContext.Comments.find(query).populate('creator task')
     if (!comments) {
       throw new BadRequest('Invalid Id')
     }
@@ -23,7 +23,7 @@ class CommentService {
   }
 
   async edit(comment) {
-    const com = await dbContext.Comments.findOneAndUpdate({ _id: comment.id }, comment, { new: true }).populate('creator')
+    const com = await dbContext.Comments.findOneAndUpdate({ _id: comment.id }, comment, { new: true }).populate('creator task')
     if (!com) {
       throw new BadRequest('You are not the user, or this is not a valid comment')
     }

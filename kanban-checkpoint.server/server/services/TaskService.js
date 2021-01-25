@@ -3,15 +3,15 @@ import { BadRequest } from '../utils/Errors'
 
 class TaskService {
   async findById(id) {
-    const task = await dbContext.Tasks.findById(id)
+    const task = await dbContext.Tasks.findById(id).populate('creator list')
     if (!task) {
       throw new BadRequest('Invalid Id')
     }
     return task
   }
 
-  async getTasksByList(listId) {
-    const tasks = await dbContext.Tasks.find(task => task.listId === listId).populate('list creator')
+  async getTasksByList(query = {}) {
+    const tasks = await dbContext.Tasks.find(query).populate('creator list')
     if (!tasks) {
       throw new BadRequest('Invalid Id')
     }
@@ -23,7 +23,7 @@ class TaskService {
   }
 
   async edit(task) {
-    const tsk = await dbContext.Tasks.findOneAndUpdate({ _id: task.id }, task, { new: true }).populate('creator')
+    const tsk = await dbContext.Tasks.findOneAndUpdate({ _id: task.id }, task, { new: true }).populate('creator list')
     if (!tsk) {
       throw new BadRequest('You are not the user, or this is not a valid task')
     }

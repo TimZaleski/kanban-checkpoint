@@ -37,7 +37,7 @@ export class KanbanController extends BaseController {
 
   async getListsByKanban(req, res, next) {
     try {
-      const data = await listService.getListsByKanban(req.params.id)
+      const data = await listService.getListsByKanban({ kanbanId: req.params.id })
       res.send(data)
     } catch (error) {
       next(error)
@@ -46,6 +46,7 @@ export class KanbanController extends BaseController {
 
   async create(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
       const data = await kanbanService.create(req.body)
       res.status(201).send(data)
     } catch (error) {

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const Comment = new Schema(
   {
     title: { type: String, required: true },
-    creatorId: { type: String },
+    creatorId: { type: String, ref: 'Account', required: true },
     taskId: { type: String, ref: 'Task', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }

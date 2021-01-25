@@ -8,15 +8,15 @@ class ListService {
   }
 
   async findById(id) {
-    const list = await dbContext.Lists.findById(id)
+    const list = await dbContext.Lists.findById(id).populate('creator kanban')
     if (!list) {
       throw new BadRequest('Invalid Id')
     }
     return list
   }
 
-  async getListsByKanban(kanbanId) {
-    const lists = await dbContext.Lists.find(list => list.kanbanId === kanbanId).populate('kanban creator')
+  async getListsByKanban(query = {}) {
+    const lists = await dbContext.Lists.find(query).populate('creator kanban')
     if (!lists) {
       throw new BadRequest('Invalid Id')
     }
@@ -28,7 +28,7 @@ class ListService {
   }
 
   async edit(list) {
-    const li = await dbContext.Lists.findOneAndUpdate({ _id: list.id }, list, { new: true }).populate('creator')
+    const li = await dbContext.Lists.findOneAndUpdate({ _id: list.id }, list, { new: true }).populate('creator kanban')
     if (!li) {
       throw new BadRequest('You are not the user, or this is not a valid list')
     }
