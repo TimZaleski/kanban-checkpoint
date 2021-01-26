@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import Kanban from '../models/KanbanModel'
 import List from '../models/ListModel'
+import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class KanbanService {
@@ -15,8 +16,10 @@ class KanbanService {
 
   async getById(kanbanId) {
     try {
+      logger.log(kanbanId + 'from kanbanservice getById before api call')
       const res = await api.get('api/kanban/' + kanbanId)
-      AppState.activeKanban = res.data.map(k => new Kanban(k))
+      AppState.activeKanban = new Kanban(res.data)
+      logger.log(AppState.activeKanban + 'from kanbanservice getById after api call')
     } catch (error) {
 
     }

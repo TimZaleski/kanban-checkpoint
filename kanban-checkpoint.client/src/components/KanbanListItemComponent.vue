@@ -27,14 +27,15 @@ export default {
         } catch (error) {
           logger.error(error)
         }
-      },
-      selectKanban() {
-        try {
-          kanbanService.getById(props.kanbanProp.id)
-        } catch (error) {
-          logger.error(error)
-        }
       }
+      // selectKanban() {
+      //   try {
+      //     logger.log(props.kanbanProp.id + 'getById from @click on kanbanlistitemcomponent')
+      //     kanbanService.getById(props.kanbanProp.id)
+      //   } catch (error) {
+      //     logger.error(error)
+      //   }
+      // }
     }
   }
 }

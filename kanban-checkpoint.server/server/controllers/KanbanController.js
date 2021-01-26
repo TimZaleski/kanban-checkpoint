@@ -29,7 +29,7 @@ export class KanbanController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      const data = await kanbanService.findById(req.params.id)
+      const data = await kanbanService.findById(req.params.id, req.userInfo.id)
       res.send(data)
     } catch (error) {
       next(error)

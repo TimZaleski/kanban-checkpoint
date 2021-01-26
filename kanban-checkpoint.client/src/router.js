@@ -25,7 +25,8 @@ const routes = [
   {
     path: '/kanban/:id',
     name: 'Kanban',
-    component: loadPage('KanbanDetailsPage')
+    component: loadPage('KanbanDetailsPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/account',

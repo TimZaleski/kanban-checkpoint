@@ -7,8 +7,8 @@ class KanbanService {
     return kanbans
   }
 
-  async findById(id) {
-    const kanban = await dbContext.Kanbans.findById(id).populate('creator')
+  async findById(id, userId) {
+    const kanban = await dbContext.Kanbans.findById({ _id: id, creatorId: userId }).populate('creator')
     if (!kanban) {
       throw new BadRequest('Invalid Id')
     }
