@@ -17,6 +17,16 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
+    path: '/kanbanlist',
+    name: 'KanbanList',
+    component: loadPage('KanbanList')
+  },
+  {
+    path: '/kanban',
+    name: 'Kanban',
+    component: loadPage('Kanban')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
