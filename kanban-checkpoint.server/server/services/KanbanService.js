@@ -3,6 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class KanbanService {
   async find(query = {}) {
+    console.log(query);
     const kanbans = await dbContext.Kanbans.find(query).populate('creator')
     return kanbans
   }

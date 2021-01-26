@@ -28,6 +28,11 @@
           </router-link>
         </li>
         <li class="nav-item">
+          <router-link :to="{ name: 'KanbanList' }" class="nav-link">
+            Kanbans
+          </router-link>
+        </li>
+        <li class="nav-item">
           <router-link :to="{ name: 'About' }" class="nav-link">
             About
           </router-link>

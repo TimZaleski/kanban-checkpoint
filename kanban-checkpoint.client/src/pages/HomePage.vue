@@ -1,9 +1,6 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo">
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-white">Vue 3 Starter</span>
-    </h1>
+  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center chalkboard">
+    <h1 class="chalk largeSize">CHALKBAN</h1>
   </div>
 </template>
 
@@ -14,12 +11,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home{
-  text-align: center;
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
+@font-face {
+  font-family: "PWChalk";
+  src: local("PWChalk"),
+   url(../assets/font/PWChalk.ttf) format("truetype");
+}
+
+.chalk{
+  color:rgb(221, 221, 221);
+  font-family: "PWChalk";
+}
+
+.largeSize{
+  font-size: 20vh;
+}
+
+.chalkboard{
+ background-image: url('../assets/img/chalkboardBg3.jpg');
+ background-size: cover;
+ background-repeat: no-repeat;
 }
 </style>
