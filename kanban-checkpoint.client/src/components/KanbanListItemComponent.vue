@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <li class="chalk spacebetween">
+  <li class="chalk spacebetween" @click="setActiveKanban">
     <router-link :to="{name: 'Kanban', params: {id: kanbanProp.id}}">
       {{ kanbanProp.title.toUpperCase() }}
     </router-link>
@@ -25,6 +25,13 @@ export default {
       deleteKanban() {
         try {
           kanbanService.delete(props.kanbanProp.id)
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      setActiveKanban() {
+        try {
+          kanbanService.getById(props.kanbanProp.id)
         } catch (error) {
           logger.error(error)
         }
