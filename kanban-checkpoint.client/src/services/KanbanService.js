@@ -56,7 +56,7 @@ class KanbanService {
   async delete(kanbanId) {
     try {
       await api.delete('api/kanban/' + kanbanId)
-      AppState.kanbans.filter(kanban => (kanban.id !== kanbanId))
+      AppState.kanbans = AppState.kanbans.filter(kanban => (kanban.id !== kanbanId))
     } catch (error) {
 
     }

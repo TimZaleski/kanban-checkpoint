@@ -1,11 +1,11 @@
 /* eslint-disable */
 <template>
-  <router-link :to="{name: 'Kanban', params: {id: kanbanProp.id}}">
-    <li class="chalk">
+  <li class="chalk spacebetween">
+    <router-link :to="{name: 'Kanban', params: {id: kanbanProp.id}}">
       {{ kanbanProp.title.toUpperCase() }}
-    </li>
-    <i class="fa fa-times chalk" aria-hidden="true"></i>
-  </router-link>
+    </router-link>
+    <i class="fa fa-times text-light" aria-hidden="true" @click="deleteKanban"></i>
+  </li>
 </template>
 
 <script>
@@ -22,21 +22,13 @@ export default {
     })
     return {
       state,
-      deleteBlog() {
+      deleteKanban() {
         try {
           kanbanService.delete(props.kanbanProp.id)
         } catch (error) {
           logger.error(error)
         }
       }
-      // selectKanban() {
-      //   try {
-      //     logger.log(props.kanbanProp.id + 'getById from @click on kanbanlistitemcomponent')
-      //     kanbanService.getById(props.kanbanProp.id)
-      //   } catch (error) {
-      //     logger.error(error)
-      //   }
-      // }
     }
   }
 }
@@ -46,6 +38,10 @@ export default {
 .chalk{
   color:rgb(221, 221, 221);
   font-family: "PWChalk";
+}
+.spacebetween{
+  display: flex;
+  justify-content: space-between;
 }
 
 </style>

@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="row">
-      <ul class="col">
+      <ul class="col-4">
         <KanbanListItemComponent v-for="kanban in state.kanbans" :key="kanban.id" :kanban-prop="kanban" />
       </ul>
     </div>
