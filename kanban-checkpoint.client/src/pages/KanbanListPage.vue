@@ -79,6 +79,10 @@ export default {
   font-size: 4vh;
 }
 
+.buttonStyle:hover{
+  color:rgb(34, 34, 34) !important;
+}
+
 .buttonContainer
 {
   align-content: center;
