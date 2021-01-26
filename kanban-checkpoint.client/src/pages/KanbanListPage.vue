@@ -1,14 +1,14 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column chalkboard container-fluid">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1 class="chalk">
+      <div class="col-8 offset-2 text-center">
+        <p class="chalk kbTitle">
           YOUR KANBANS
-        </h1>
+        </p>
       </div>
-      <div class="col-2">
+      <div class="col-2 d-flex align-items-center">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-light chalk" data-toggle="modal" data-target="#createKanbanModal">
+        <button type="button" class="btn btn-outline-light chalk buttonStyle" data-toggle="modal" data-target="#createKanbanModal">
           NEW b
         </button>
         <ModalComponent />
@@ -69,5 +69,18 @@ export default {
  background-image: url('../assets/img/chalkboardBg3.jpg');
  background-size: cover;
  background-repeat: no-repeat;
+}
+
+.kbTitle{
+  font-size: 8vh;
+}
+
+.buttonStyle{
+  font-size: 4vh;
+}
+
+.buttonContainer
+{
+  align-content: center;
 }
 </style>

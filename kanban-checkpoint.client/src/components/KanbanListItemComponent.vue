@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <li class="chalk spacebetween" @click="setActiveKanban">
+  <li class="chalk spacebetween listStyle" @click="setActiveKanban">
     <router-link :to="{name: 'Kanban', params: {id: kanbanProp.id}}">
       {{ kanbanProp.title.toUpperCase() }}
     </router-link>
@@ -50,5 +50,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-
+.listStyle{
+  font-size: 4vh;
+}
 </style>
