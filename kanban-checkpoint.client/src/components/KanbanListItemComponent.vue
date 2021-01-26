@@ -1,9 +1,9 @@
 /* eslint-disable */
 <template>
-  <router-link :to="{name: 'KanbanDetails', params: {id: kanbanProp.id}}">
-    <div class="col-3">
-      <h2>{{ kanbanProp.title }}</h2>
-    </div>
+  <router-link :to="{name: 'Kanban', params: {id: kanbanProp.id}}">
+    <li class="chalk">
+      {{ kanbanProp.title.toUpperCase() }}
+    </li>
   </router-link>
 </template>
 
@@ -12,7 +12,7 @@ import { reactive } from 'vue'
 import { logger } from '../utils/Logger'
 import { kanbanService } from '../services/KanbanService'
 export default {
-  name: 'KanbanListItem',
+  name: 'KanbanListItemComponent',
   props: {
     kanbanProp: { type: Object, required: true }
   },
@@ -41,17 +41,9 @@ export default {
 </script>
 
 <style scoped>
-.BlogComponent{
-  border-style: solid;
-  height: 20vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+.chalk{
+  color:rgb(221, 221, 221);
+  font-family: "PWChalk";
 }
 
-.BlogComponent :hover
-{
-  color: blue;
-}
 </style>

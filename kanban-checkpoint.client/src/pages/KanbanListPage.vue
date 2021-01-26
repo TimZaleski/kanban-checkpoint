@@ -1,12 +1,16 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column container-fluid">
+  <div class="home flex-grow-1 d-flex flex-column chalkboard container-fluid">
     <div class="row">
       <div class="col-12">
-        <h1>Your Kanbans</h1>
+        <h1 class="chalk">
+          YOUR KANBANS
+        </h1>
       </div>
     </div>
     <div class="row">
-      <KanbanListItemComponent v-for="kanban in state.kanbans" :key="kanban.id" :kanban-prop="kanban" />
+      <ul class="col">
+        <KanbanListItemComponent v-for="kanban in state.kanbans" :key="kanban.id" :kanban-prop="kanban" />
+      </ul>
     </div>
   </div>
 </template>
