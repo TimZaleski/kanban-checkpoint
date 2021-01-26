@@ -1,4 +1,6 @@
 import { AppState } from '../AppState'
+import Kanban from '../models/KanbanModel'
+import List from '../models/ListModel'
 import { api } from './AxiosService'
 
 class KanbanService {

@@ -18,7 +18,7 @@ import { AppState } from '../AppState'
 import { kanbanService } from '../services/KanbanService'
 
 export default {
-name: 'KanbanList',
+  name: 'KanbanList',
   setup() {
     const state = reactive({
       kanbans: computed(() => AppState.kanbans),

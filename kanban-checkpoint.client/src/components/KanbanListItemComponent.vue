@@ -1,16 +1,15 @@
 /* eslint-disable */
 <template>
-<router-link :to="{name: 'KanbanDetails', params: {id: kanbanProp.id}}">
-  <div class="col-3">
-    <h2>{{kanbanProp.title}}</h2>
-  </div>
-</router-link>
+  <router-link :to="{name: 'KanbanDetails', params: {id: kanbanProp.id}}">
+    <div class="col-3">
+      <h2>{{ kanbanProp.title }}</h2>
+    </div>
+  </router-link>
 </template>
 
 <script>
-import { computed, reactive } from 'vue'
+import { reactive } from 'vue'
 import { logger } from '../utils/Logger'
-import { AppState } from '../AppState'
 import { kanbanService } from '../services/KanbanService'
 export default {
   name: 'KanbanListItem',
@@ -29,11 +28,10 @@ export default {
           logger.error(error)
         }
       },
-      selectKanban () {
+      selectKanban() {
         try {
           kanbanService.getById(props.kanbanProp.id)
-        }
-        catch (error) {
+        } catch (error) {
           logger.error(error)
         }
       }
