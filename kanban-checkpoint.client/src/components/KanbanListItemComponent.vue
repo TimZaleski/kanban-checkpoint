@@ -4,6 +4,7 @@
     <li class="chalk">
       {{ kanbanProp.title.toUpperCase() }}
     </li>
+    <i class="fa fa-times chalk" aria-hidden="true"></i>
   </router-link>
 </template>
 
