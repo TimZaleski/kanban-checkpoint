@@ -1,10 +1,17 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column chalkboard container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-8 offset-2">
         <h1 class="chalk">
           YOUR KANBANS
         </h1>
+      </div>
+      <div class="col-2">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-light chalk" data-toggle="modal" data-target="#createKanbanModal">
+          NEW b
+        </button>
+        <ModalComponent />
       </div>
     </div>
     <div class="row">
