@@ -5,6 +5,7 @@ export const AppState = reactive({
   user: {},
   account: {},
   activeKanban: {},
+  activeTask: {},
   kanbans: [],
   lists: [],
   tasks: [],

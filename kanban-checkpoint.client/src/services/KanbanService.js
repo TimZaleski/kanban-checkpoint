@@ -5,7 +5,7 @@ class KanbanService {
   async getAll() {
     try {
       const res = await api.get('api/kanban')
-      AppState.kanbans = res.data
+      AppState.kanbans = res.data.map(k => new Kanban(k))
     } catch (error) {
 
     }
@@ -14,7 +14,7 @@ class KanbanService {
   async getById(kanbanId) {
     try {
       const res = await api.get('api/kanban/' + kanbanId)
-      AppState.activeKanban = res.data
+      AppState.activeKanban = res.data.map(k => new Kanban(k))
     } catch (error) {
 
     }
@@ -23,7 +23,7 @@ class KanbanService {
   async getListsById(kanbanId) {
     try {
       const res = await api.get('api/kanban/' + kanbanId + '/lists')
-      AppState.lists = res.data
+      AppState.lists = res.data.map(l => new List(l))
     } catch (error) {
 
     }
@@ -50,7 +50,7 @@ class KanbanService {
 
   async delete(kanbanId) {
     try {
-      await api.put('api/kanban' + kanbanId)
+      await api.delete('api/kanban/' + kanbanId)
       AppState.kanbans.filter(kanban => (kanban.id !== kanbanId))
     } catch (error) {
 

@@ -5,7 +5,7 @@ class CommentService {
   async getById(commentId) {
     try {
       const res = await api.get('api/comment/' + commentId)
-      AppState.activecomment = res.data
+      AppState.activecomment = res.data.map(c => new Comment(c))
     } catch (error) {
 
     }
@@ -14,7 +14,7 @@ class CommentService {
   async create(comment) {
     try {
       const res = await api.post('api/comment', comment)
-      AppState.comments.push(res.data)
+      AppState.comments = [...AppState.comments, res.data.map(c => new Comment(c))]
     } catch (error) {
 
     }
@@ -32,7 +32,7 @@ class CommentService {
 
   async delete(commentId) {
     try {
-      await api.put('api/comment' + commentId)
+      await api.delete('api/comment/' + commentId)
       AppState.comments.filter(comment => (comment.id !== commentId))
     } catch (error) {
 

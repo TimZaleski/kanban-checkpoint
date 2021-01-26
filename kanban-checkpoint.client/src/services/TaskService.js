@@ -5,7 +5,7 @@ class TaskService {
   async getById(taskId) {
     try {
       const res = await api.get('api/task/' + taskId)
-      AppState.activetask = res.data
+      AppState.activeTask = res.data.map(t => new Task(t))
     } catch (error) {
 
     }
@@ -14,7 +14,7 @@ class TaskService {
   async getCommentsById(taskId) {
     try {
       const res = await api.get('api/task/' + taskId + '/comments')
-      AppState.tasks = res.data
+      AppState.tasks = res.data.map(t => new Task(t))
     } catch (error) {
 
     }
@@ -23,7 +23,7 @@ class TaskService {
   async create(task) {
     try {
       const res = await api.post('api/task', task)
-      AppState.tasks.push(res.data)
+      AppState.tasks = [...AppState.tasks, res.data.map(t => new Task(t))]
     } catch (error) {
 
     }
@@ -41,7 +41,7 @@ class TaskService {
 
   async delete(taskId) {
     try {
-      await api.put('api/task' + taskId)
+      await api.delete('api/task/' + taskId)
       AppState.tasks.filter(task => (task.id !== taskId))
     } catch (error) {
 

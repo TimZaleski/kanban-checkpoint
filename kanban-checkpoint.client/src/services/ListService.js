@@ -5,7 +5,7 @@ class ListService {
   async getAll() {
     try {
       const res = await api.get('api/list')
-      AppState.lists = res.data
+      AppState.lists = res.data.map(l => new List(l))
     } catch (error) {
 
     }
@@ -14,16 +14,16 @@ class ListService {
   async getById(listId) {
     try {
       const res = await api.get('api/list/' + listId)
-      AppState.activelist = res.data
+      AppState.activelist = res.data.map(l => new List(l))
     } catch (error) {
 
     }
   }
 
-  async getTasksById(listId) {
+  async getTasksByListId(listId) {
     try {
       const res = await api.get('api/list/' + listId + '/tasks')
-      AppState.lists = res.data
+      AppState.tasks = res.data.map(t => new Task(t))
     } catch (error) {
 
     }
@@ -32,7 +32,7 @@ class ListService {
   async create(list) {
     try {
       const res = await api.post('api/list', list)
-      AppState.lists.push(res.data)
+      AppState.lists = [...AppState.lists, res.data.map(l => new List(l))]
     } catch (error) {
 
     }
@@ -50,7 +50,7 @@ class ListService {
 
   async delete(listId) {
     try {
-      await api.put('api/list' + listId)
+      await api.delete('api/list/' + listId)
       AppState.lists.filter(list => (list.id !== listId))
     } catch (error) {
 
