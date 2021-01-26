@@ -19,7 +19,8 @@ export class KanbanController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      const data = await kanbanService.find(req.query)
+      const userId = req.userInfo.id
+      const data = await kanbanService.find(req.query, userId)
       res.send(data)
     } catch (error) {
       next(error)
