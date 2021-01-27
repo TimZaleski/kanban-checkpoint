@@ -2,6 +2,7 @@ import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { kanbanService } from '../services/KanbanService'
 import { listService } from '../services/ListService'
+import { taskService } from '../services/TaskService'
 
 export class KanbanController extends BaseController {
   constructor() {
