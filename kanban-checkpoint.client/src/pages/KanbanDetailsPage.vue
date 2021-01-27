@@ -7,9 +7,11 @@
         </h1>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-outline-light buttonStyle chalk">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-light chalk buttonStyle" data-toggle="modal" data-target="#createListModal">
           a LIST
         </button>
+        <ListModalComponent />
       </div>
     </div>
     <div class="row">

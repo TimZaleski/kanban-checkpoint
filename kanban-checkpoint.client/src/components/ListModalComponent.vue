@@ -1,17 +1,17 @@
 <template>
   <!-- Create Modal -->
   <div class="modal fade"
-       id="createKanbanModal"
+       id="createListModal"
        tabindex="-1"
        role="dialog"
-       aria-labelledby="createKanbanModal"
+       aria-labelledby="createListModal"
        aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="createKanbanModal">
-            Create A New Kanban Board
+          <h5 class="modal-title" id="createListModal">
+            Add A New List
           </h5>
           <button id="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -19,18 +19,18 @@
         </div>
 
         <div class="modal-body">
-          <form @submit.prevent="createKanban">
+          <form @submit.prevent="createList">
             <div class="form-group">
               <input type="text"
-                     name="Kanban title"
-                     id="KanbanTitle"
+                     name="List title"
+                     id="ListTitle"
                      class="form-control"
-                     placeholder="Kanban title"
-                     v-model="state.newKanban.title"
+                     placeholder="List title"
+                     v-model="state.newList.title"
               >
             </div>
             <button type="submit" class="btn btn-success">
-              Create
+              Add
             </button>
           </form>
         </div>
@@ -40,26 +40,23 @@
 </template>
 
 <script>
-import { computed, reactive } from 'vue'
-import { AppState } from '../AppState'
-import { kanbanService } from '../services/KanbanService'
+import { reactive } from 'vue'
+import { listService } from '../services/ListService'
 // import router from '../router'
 import { logger } from '../utils/Logger'
 export default {
-  name: 'KanbanModalComponent',
+  name: 'ListModalComponent',
   setup() {
     const state = reactive({
-      newKanban: {},
-      activeKanban: computed(() => AppState.activeKanban)
+      newList: {}
     })
     return {
       state,
-      async createKanban() {
+      async createList() {
         try {
-          await kanbanService.create(state.newKanban)
-          state.newKanban = {}
+          await listService.create(state.newList)
+          state.newList = {}
           document.getElementById('closeModal').click()
-          // router.push({ name: 'KanbanDetails', params: { id: state.activeKanban.id } })
         } catch (error) {
           logger.error(error)
         }
