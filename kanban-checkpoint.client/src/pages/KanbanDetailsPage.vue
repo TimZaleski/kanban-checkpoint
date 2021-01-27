@@ -33,7 +33,7 @@ export default {
         logger.log('on mounted, ' + route.params.id)
         await kanbanService.getById(route.params.id, state.user.id)
         await kanbanService.getListsById(route.params.id)
-        // await kanbanService.getTasksById(route.params.id)
+        await kanbanService.getTasksById(route.params.id)
       } catch (error) {
         logger.error(error)
       }

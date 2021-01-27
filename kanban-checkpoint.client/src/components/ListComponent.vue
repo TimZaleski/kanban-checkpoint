@@ -1,8 +1,8 @@
 <template>
   <div class="col-3 min-vh-100 chalk-border chalk">
-    <div class="row">
-    <h1 class="chalk">
-      {{ listProp.title }}
+      <div class="row">
+      <h1 class="chalk">
+      {{ listProp.title.toUpperCase() }}
     </h1>
       <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
     </div>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
 export default {
   name: 'ListComponent',
