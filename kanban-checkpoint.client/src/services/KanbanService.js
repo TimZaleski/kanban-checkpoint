@@ -8,7 +8,7 @@ import { api } from './AxiosService'
 class KanbanService {
   async getAll() {
     try {
-      const res = await api.get('api/kanban')
+      const res = await api.get('api/kanbans')
       AppState.kanbans = res.data.map(k => new Kanban(k))
     } catch (error) {
 
@@ -18,7 +18,7 @@ class KanbanService {
   async getById(kanbanId) {
     try {
       logger.log(kanbanId + 'from kanbanservice getById before api call')
-      const res = await api.get('api/kanban/' + kanbanId)
+      const res = await api.get('api/kanbans/' + kanbanId)
       AppState.activeKanban = new Kanban(res.data)
       logger.log(AppState.activeKanban + 'from kanbanservice getById after api call')
     } catch (error) {
@@ -28,7 +28,7 @@ class KanbanService {
 
   async getListsById(kanbanId) {
     try {
-      const res = await api.get('api/kanban/' + kanbanId + '/lists')
+      const res = await api.get('api/kanbans/' + kanbanId + '/lists')
       AppState.lists = res.data.map(l => new List(l))
     } catch (error) {
 
@@ -37,7 +37,7 @@ class KanbanService {
 
   async getTasksById(kanbanId) {
     try {
-      const res = await api.get('api/kanban/' + kanbanId + '/tasks')
+      const res = await api.get('api/kanbans/' + kanbanId + '/tasks')
       AppState.tasks = res.data.map(t => new Task(t))
     } catch (error) {
 
@@ -46,7 +46,7 @@ class KanbanService {
 
   async create(kanban) {
     try {
-      const res = await api.post('api/kanban', kanban)
+      const res = await api.post('api/kanbans', kanban)
       AppState.kanbans.push(res.data)
     } catch (error) {
 
@@ -55,7 +55,7 @@ class KanbanService {
 
   async edit(updatedKanban, kanbanId) {
     try {
-      const res = await api.put('api/kanban/' + kanbanId, updatedKanban)
+      const res = await api.put('api/kanbans/' + kanbanId, updatedKanban)
       const index = AppState.kanbans.findIndex(kanban => kanban.id === res.data.id)
       AppState.kanbans.splice(index, 1, res.data)
     } catch (error) {
@@ -65,7 +65,7 @@ class KanbanService {
 
   async delete(kanbanId) {
     try {
-      await api.delete('api/kanban/' + kanbanId)
+      await api.delete('api/kanbans/' + kanbanId)
       AppState.kanbans = AppState.kanbans.filter(kanban => (kanban.id !== kanbanId))
     } catch (error) {
 
