@@ -1,7 +1,7 @@
 <template>
   <div class="col-3 min-vh-100 chalk-border chalk">
       <div class="row">
-        <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
+        <!-- <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" /> -->
     </div>
   </div>
 </template>
