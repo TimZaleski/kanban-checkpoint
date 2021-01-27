@@ -13,7 +13,7 @@
 import { reactive } from 'vue'
 // import { AppState } from '../AppState'
 export default {
-  name: 'List',
+  name: 'ListComponent',
   props: {
     listProp: { type: Object, required: true }
   },
