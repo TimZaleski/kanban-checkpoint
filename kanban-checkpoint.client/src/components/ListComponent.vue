@@ -1,9 +1,14 @@
 <template>
   <div class="col-3 min-vh-100 chalk-border chalk" @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone">
     <div class="row">
-      <h1 class="chalk">
-        {{ listProp.title.toUpperCase() }}
-      </h1>
+      <div class="col-12">
+        a
+      </div>
+      <div class="col">
+        <h1 class="chalk">
+          {{ listProp.title.toUpperCase() }}
+        </h1>
+      </div>
       <ul>
         <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
       </ul>
