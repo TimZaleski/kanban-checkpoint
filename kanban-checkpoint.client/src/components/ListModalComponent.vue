@@ -19,7 +19,7 @@
         </div>
 
         <div class="modal-body">
-          <form @submit.prevent="createList">
+          <form @submit.prevent="(state.lists.length < 4) ? createList : document.getElementById('maxListsError').removeAttribute('hidden')">
             <div class="form-group">
               <input type="text"
                      name="List title"
@@ -28,6 +28,7 @@
                      placeholder="List title"
                      v-model="state.newList.title"
               >
+              <small id="maxListsError" class="form-text text-danger" hidden>You have reached the maximum number of allowed lists</small>
             </div>
             <button type="submit" class="btn btn-success">
               Add
@@ -40,26 +41,30 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { listService } from '../services/ListService'
 import { logger } from '../utils/Logger'
 import { useRoute } from 'vue-router'
+import { AppState } from '../AppState'
 export default {
   name: 'ListModalComponent',
   setup() {
     const route = useRoute()
     const state = reactive({
-      newList: {}
+      newList: {},
+      lists: computed(() => AppState.lists)
     })
     return {
       state,
       async createList() {
         try {
+          logger.log(route.params.id)
           await listService.create(state.newList, route.params.id)
           state.newList = {}
           document.getElementById('closeModal').click()
         } catch (error) {
           logger.error(error)
+          document.getElementById('as').setAttribute
         }
       }
     }
