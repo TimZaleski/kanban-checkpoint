@@ -11,7 +11,7 @@
         <button type="button" class="btn btn-outline-light chalk buttonStyle" data-toggle="modal" data-target="#createKanbanModal">
           NEW b
         </button>
-        <ModalComponent />
+        <KanbanModalComponent />
       </div>
     </div>
     <div class="row">
@@ -83,8 +83,4 @@ export default {
   color:rgb(34, 34, 34) !important;
 }
 
-.buttonContainer
-{
-  align-content: center;
-}
 </style>
