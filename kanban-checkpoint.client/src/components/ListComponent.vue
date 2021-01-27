@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 min-vh-100 chalk-border chalk">
+  <div class="col-3 min-vh-100 chalk-border chalk" ondrop="drop(event)" ondragover="allowDrop(event)">
       <div class="row">
       <h1 class="chalk">
       {{ listProp.title.toUpperCase() }}
@@ -24,7 +24,15 @@ export default {
       tasks: computed(() => AppState.tasks.filter(t => t.listId === props.listProp.id))
     })
     return {
-      state
+      state,
+      allowDrop(ev) {
+        ev.preventDefault()
+      },
+      drop(ev) {
+        ev.preventDefault()
+        var data = ev.dataTransfer.getData("text")
+        ev.target.appendChild(document.getElementById(data))
+      }
     }
   }
 }
