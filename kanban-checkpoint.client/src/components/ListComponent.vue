@@ -29,7 +29,7 @@ export default {
         console.log('list drag')
       },
       drop() {
-        var data = event.dataTransfer.getData("text")
+        const data = event.dataTransfer.getData('text')
         console.log(data)
         event.target.appendChild(document.getElementById(data))
       }
