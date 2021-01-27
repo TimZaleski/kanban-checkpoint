@@ -19,7 +19,8 @@
         </div>
 
         <div class="modal-body">
-          <form @submit.prevent="(state.lists.length < 4) ? createList : document.getElementById('maxListsError').removeAttribute('hidden')">
+          <form @submit.prevent="createList">
+            <!-- (state.lists.length < 4) ? createList : document.getElementById('maxListsError').removeAttribute('hidden') -->
             <div class="form-group">
               <input type="text"
                      name="List title"

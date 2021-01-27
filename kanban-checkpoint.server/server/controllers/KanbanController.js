@@ -6,7 +6,7 @@ import { taskService } from '../services/TaskService'
 
 export class KanbanController extends BaseController {
   constructor() {
-    super('api/kanban')
+    super('api/kanbans')
     this.router
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(Auth0Provider.getAuthorizedUserInfo)
