@@ -1,17 +1,17 @@
 <template>
   <div class="col-3 min-vh-100 chalk-border chalk">
-    <!-- <div class="row"> -->
-    <h1 class="chalk">
-      {{ listProp.title }}
-    </h1>
-    <!-- <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" /> -->
-    <!-- </div> -->
+    <div class="row">
+      <h1 class="chalk">
+        {{ listProp.title }}
+      </h1>
+      <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
+    </div>
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
-// import { AppState } from '../AppState'
+import { computed, reactive } from 'vue'
+import { AppState } from '../AppState'
 export default {
   name: 'ListComponent',
   props: {
@@ -19,7 +19,7 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      // tasks: computed(() => AppState.tasks.filter(t => t.listId === props.listProp.id))
+      tasks: computed(() => AppState.tasks.filter(t => t.listId === props.listProp.id))
     })
     return {
       state

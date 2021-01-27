@@ -83,8 +83,4 @@ export default {
   color:rgb(34, 34, 34) !important;
 }
 
-.buttonContainer
-{
-  align-content: center;
-}
 </style>

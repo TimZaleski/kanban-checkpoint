@@ -1,10 +1,15 @@
 <template>
   <div class="flex-grow-1 d-flex flex-column justify-content-center chalkboard container-fluid">
-    <div class="row">
-      <div class="col">
+    <div class="row d-flex align-items-center">
+      <div class="col-10">
         <h1 class="chalk largeSize" v-if="state.activeKanban.title">
           {{ state.activeKanban.title.toUpperCase() }}
         </h1>
+      </div>
+      <div class="col-2">
+        <button type="button" class="btn btn-outline-light buttonStyle chalk">
+          a LIST
+        </button>
       </div>
     </div>
     <div class="row">
@@ -30,7 +35,7 @@ export default {
     })
     onBeforeMount(async() => {
       try {
-        logger.log('on mounted, ' + route.params.id)
+        logger.log('on before mounted, ' + route.params.id)
         await kanbanService.getById(route.params.id, state.user.id)
         await kanbanService.getListsById(route.params.id)
         // await kanbanService.getTasksById(route.params.id)
@@ -51,16 +56,13 @@ export default {
   src: local("PWChalk"),
    url(../assets/font/PWChalk.ttf) format("truetype");
 }
-
 .chalk{
   color:rgb(221, 221, 221);
   font-family: "PWChalk";
 }
-
 .largeSize{
   font-size: 8vh;
 }
-
 .chalkboard{
  background-image: url('../assets/img/chalkboardBg3.jpg');
  background-size: cover;
@@ -69,5 +71,11 @@ export default {
 .chalk-border {
   border: 25px solid rgba(255,255,255,.8);
   border-image: url("https://www.unicefusa.org/sites/default/files/answer-box.png") 20;
+}
+.buttonStyle{
+  font-size: 4vh;
+}
+.buttonStyle:hover{
+  color:rgb(34, 34, 34) !important;
 }
 </style>
