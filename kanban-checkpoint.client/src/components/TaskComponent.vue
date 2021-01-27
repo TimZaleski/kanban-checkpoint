@@ -75,7 +75,7 @@ ul li{
 }
 
 ul li h2{
-  font-size:140%;
+  font-size:200%;
   font-weight:bold;
   padding-bottom:10px;
 }
