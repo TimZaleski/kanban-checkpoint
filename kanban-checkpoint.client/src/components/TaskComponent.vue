@@ -1,6 +1,6 @@
 <template>
   <li class="stickyNote">
-     <a href="#">
+    <a href="#">
       <h2>{{ taskProp.title.toUpperCase() }}</h2>
     </a>
   </li>
@@ -8,7 +8,7 @@
 
 <script>
 import { reactive } from 'vue'
-//import { AppState } from '../AppState'
+// import { AppState } from '../AppState'
 export default {
   name: 'TaskComponent',
   props: {
