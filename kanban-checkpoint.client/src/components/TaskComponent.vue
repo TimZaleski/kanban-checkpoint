@@ -1,8 +1,6 @@
 <template>
   <li class="stickyNote" draggable="true" :id="taskProp.id" @dragstart="drag()">
-    <a href="#">
-      <h2>{{ taskProp.title.toUpperCase() }}</h2>
-    </a>
+    <h2>{{ taskProp.title.toUpperCase() }}</h2>
   </li>
 </template>
 
@@ -20,7 +18,11 @@ export default {
     return {
       state,
       drag() {
-        event.dataTransfer.setData('text', event.target.id)
+        console.log(event.target)
+        event.dataTransfer.dropEffect = 'move'
+        event.dataTransfer.effectAllowed = 'move'
+        event.dataTransfer.setData('application/x-moz-node', event.target.id)
+        console.log(event.dataTransfer)
       }
     }
   }
@@ -83,7 +85,7 @@ ul li h2{
   padding-bottom:10px;
 }
 
-ul li a{
+ul li{
   text-decoration:none;
   color:#000;
   background:#ffc;
@@ -128,7 +130,7 @@ ul li:nth-child(5n) a{
   top:-10px;
 }
 
-ul li a:hover,ul li a:focus{
+ul li:hover,ul li:focus{
   -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
   -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
   box-shadow:10px 10px 7px rgba(0,0,0,.7);
@@ -140,7 +142,7 @@ ul li a:hover,ul li a:focus{
   z-index:5;
 }
 
-ul li a{
+ul li{
   text-decoration:none;
   color:#000;
   background:#ffc;
