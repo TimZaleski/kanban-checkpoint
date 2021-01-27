@@ -68,15 +68,7 @@ ul{
   overflow:hidden;
   padding:3em;
 }
-ul li a{
-  text-decoration:none;
-  color:#000;
-  background:#ffc;
-  display:block;
-  height:10em;
-  width:10em;
-  padding:1em;
-}
+
 ul li{
   margin:1em;
   float:left;
@@ -93,18 +85,15 @@ ul li a{
   color:#000;
   background:#ffc;
   display:block;
-  height:10em;
-  width:10em;
-  padding:1em;
+  height:30vh;
+  width:30vh;
+  padding:1vh;
   /* Firefox */
   -moz-box-shadow:5px 5px 7px rgb(12, 12, 12);
   /* Safari+Chrome */
   -webkit-box-shadow: 5px 5px 7px rgba(12,12,12,.7);
   /* Opera */
   box-shadow: 5px 5px 7px rgba(12,12,12,.7);
-}
-
-ul li a{
   -webkit-transform:rotate(-6deg);
   -o-transform:rotate(-6deg);
   -moz-transform:rotate(-6deg);
@@ -153,9 +142,9 @@ ul li a{
   color:#000;
   background:#ffc;
   display:block;
-  height:10em;
-  width:10em;
-  padding:1em;
+  height:30vh;
+  width:30vh;
+  padding:1vh;
   -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
   -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
   box-shadow: 5px 5px 7px rgba(33,33,33,.7);
