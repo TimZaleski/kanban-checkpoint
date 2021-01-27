@@ -34,6 +34,15 @@ class KanbanService {
     }
   }
 
+  async getTasksById(kanbanId) {
+    try {
+      const res = await api.get('api/kanban/' + kanbanId + '/tasks')
+      AppState.tasks = res.data.map(t => new Task(t))
+    } catch (error) {
+
+    }
+  }
+
   async create(kanban) {
     try {
       const res = await api.post('api/kanban', kanban)

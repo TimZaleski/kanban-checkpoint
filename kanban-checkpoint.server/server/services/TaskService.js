@@ -18,6 +18,14 @@ class TaskService {
     return tasks
   }
 
+  async getTasksByKanban(query = {}) {
+    const tasks = await dbContext.Tasks.find(query).populate('creator list kanban')
+    if (!tasks) {
+      throw new BadRequest('Invalid Id')
+    }
+    return tasks
+  }
+
   async create(body) {
     return await dbContext.Tasks.create(body)
   }

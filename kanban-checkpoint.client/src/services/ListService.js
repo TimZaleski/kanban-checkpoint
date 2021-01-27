@@ -23,7 +23,7 @@ class ListService {
   async getTasksByListId(listId) {
     try {
       const res = await api.get('api/list/' + listId + '/tasks')
-      AppState.tasks = res.data.map(t => new Task(t))
+      AppState.tasks = [...AppState.tasks, res.data.map(t => new Task(t))]
     } catch (error) {
 
     }

@@ -12,6 +12,7 @@ export class KanbanController extends BaseController {
       .get('', this.getAll)
       .get('/:id', this.getById)
       .get('/:id/lists', this.getListsByKanban)
+      .get('/:id/tasks', this.getTasksByKanban)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -39,6 +40,15 @@ export class KanbanController extends BaseController {
   async getListsByKanban(req, res, next) {
     try {
       const data = await listService.getListsByKanban({ kanbanId: req.params.id })
+      res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTasksByKanban(req, res, next) {
+    try {
+      const data = await taskService.getTasksByKanban({ kanbanId: req.params.id })
       res.send(data)
     } catch (error) {
       next(error)
