@@ -42,11 +42,12 @@
 <script>
 import { reactive } from 'vue'
 import { listService } from '../services/ListService'
-// import router from '../router'
 import { logger } from '../utils/Logger'
+import { useRoute } from 'vue-router'
 export default {
   name: 'ListModalComponent',
   setup() {
+    const route = useRoute()
     const state = reactive({
       newList: {}
     })
@@ -54,7 +55,7 @@ export default {
       state,
       async createList() {
         try {
-          await listService.create(state.newList)
+          await listService.create(state.newList, route.params.id)
           state.newList = {}
           document.getElementById('closeModal').click()
         } catch (error) {

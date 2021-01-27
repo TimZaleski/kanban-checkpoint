@@ -31,10 +31,11 @@ class ListService {
     }
   }
 
-  async create(list) {
+  async create(list, kanbanId) {
     try {
+      list.kanbanId = kanbanId
       const res = await api.post('api/list', list)
-      AppState.lists = [...AppState.lists, res.data.map(l => new List(l))]
+      AppState.lists = [...AppState.lists, new List(res.data)]
     } catch (error) {
 
     }

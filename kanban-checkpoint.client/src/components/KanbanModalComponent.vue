@@ -43,7 +43,6 @@
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { kanbanService } from '../services/KanbanService'
-// import router from '../router'
 import { logger } from '../utils/Logger'
 export default {
   name: 'KanbanModalComponent',
@@ -59,7 +58,6 @@ export default {
           await kanbanService.create(state.newKanban)
           state.newKanban = {}
           document.getElementById('closeModal').click()
-          // router.push({ name: 'KanbanDetails', params: { id: state.activeKanban.id } })
         } catch (error) {
           logger.error(error)
         }
