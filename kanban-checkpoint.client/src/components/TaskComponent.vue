@@ -108,12 +108,14 @@ ul li a{
   -webkit-transform:rotate(-6deg);
   -o-transform:rotate(-6deg);
   -moz-transform:rotate(-6deg);
+  transform:rotate(-6deg);
 }
 
 ul li:nth-child(even) a{
   -o-transform:rotate(4deg);
   -webkit-transform:rotate(4deg);
   -moz-transform:rotate(4deg);
+  transform:rotate(4deg);
   position:relative;
   top:5px;
 }
@@ -121,6 +123,7 @@ ul li:nth-child(3n) a{
   -o-transform:rotate(-3deg);
   -webkit-transform:rotate(-3deg);
   -moz-transform:rotate(-3deg);
+  transform:rotate(-3deg);
   position:relative;
   top:-5px;
 }
@@ -128,6 +131,7 @@ ul li:nth-child(5n) a{
   -o-transform:rotate(5deg);
   -webkit-transform:rotate(5deg);
   -moz-transform:rotate(5deg);
+  transform:rotate(5deg);
   position:relative;
   top:-10px;
 }
@@ -139,6 +143,7 @@ ul li a:hover,ul li a:focus{
   -webkit-transform: scale(1.25);
   -moz-transform: scale(1.25);
   -o-transform: scale(1.25);
+  transform: scale(1.25);
   position:relative;
   z-index:5;
 }
@@ -157,5 +162,6 @@ ul li a{
   -moz-transition:-moz-transform .15s linear;
   -o-transition:-o-transform .15s linear;
   -webkit-transition:-webkit-transform .15s linear;
+  transition:-webkit-transform .15s linear;
 }
 </style>
