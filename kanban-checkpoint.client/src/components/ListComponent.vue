@@ -29,16 +29,11 @@ export default {
       },
       drop() {
         const data = event.dataTransfer.getData('application/x-moz-node')
-        if (event.target.nodeName == "LI")
-        {
+        if (event.target.nodeName === 'LI') {
           event.target.parentNode.appendChild(document.getElementById(data))
-        }
-        else if (event.target.nodeName == "H2")
-        {
+        } else if (event.target.nodeName === 'H2') {
           event.target.parentNode.parentNode.appendChild(document.getElementById(data))
-        }
-        else if (event.target.nodeName == "UL")
-        {
+        } else if (event.target.nodeName === 'UL') {
           event.target.appendChild(document.getElementById(data))
         }
       }
