@@ -2,7 +2,7 @@
   <div class="flex-grow-1 d-flex flex-column justify-content-center chalkboard container-fluid">
     <div class="row">
       <div class="col">
-        <h1 class="chalk largeSize">
+        <h1 class="chalk largeSize" v-if="state.activeKanban.title">
           {{ state.activeKanban.title.toUpperCase() }}
         </h1>
       </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onBeforeMount, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { kanbanService } from '../services/KanbanService'
 import { logger } from '../utils/Logger'
@@ -28,12 +28,12 @@ export default {
       user: computed(() => AppState.user),
       lists: computed(() => AppState.lists)
     })
-    onMounted(async() => {
+    onBeforeMount(async() => {
       try {
         logger.log('on mounted, ' + route.params.id)
         await kanbanService.getById(route.params.id, state.user.id)
         await kanbanService.getListsById(route.params.id)
-        await kanbanService.getTasksById(route.params.id)
+        // await kanbanService.getTasksById(route.params.id)
       } catch (error) {
         logger.error(error)
       }
