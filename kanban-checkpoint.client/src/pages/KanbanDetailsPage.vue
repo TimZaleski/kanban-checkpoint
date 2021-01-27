@@ -25,7 +25,7 @@ import { computed, onBeforeMount, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { kanbanService } from '../services/KanbanService'
 import { logger } from '../utils/Logger'
-import { useRoute } from 'vue-router'
+import { onBeforeRouteLeave, useRoute } from 'vue-router'
 export default {
   name: 'KanbanDetails',
   setup() {
@@ -44,6 +44,13 @@ export default {
       } catch (error) {
         logger.error(error)
       }
+    })
+    onBeforeRouteLeave(() => {
+      AppState.activeKanban = {}
+      AppState.activeTask = {}
+      AppState.lists = []
+      AppState.tasks = []
+      AppState.comments = []
     })
     return {
       state
