@@ -19,6 +19,12 @@ export default {
    url(../assets/font/PWChalk.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Reenie Beanie";
+  src: local("Reenie Beanie"),
+   url(../assets/font/ReenieBeanie-Regular.ttf) format("truetype");
+}
+
 .chalk{
   color:rgb(221, 221, 221);
   font-family: "PWChalk";

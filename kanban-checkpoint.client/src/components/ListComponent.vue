@@ -4,7 +4,9 @@
       <h1 class="chalk">
       {{ listProp.title.toUpperCase() }}
     </h1>
+    <ul>
       <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
+    </ul>
     </div>
   </div>
 </template>
@@ -19,7 +21,7 @@ export default {
   },
   setup(props) {
     const state = reactive({
-       tasks: computed(() => AppState.tasks.filter(t => t.listId === props.listProp.id))
+      tasks: computed(() => AppState.tasks.filter(t => t.listId === props.listProp.id))
     })
     return {
       state
