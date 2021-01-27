@@ -64,7 +64,6 @@ export default {
           document.getElementById('closeModal').click()
         } catch (error) {
           logger.error(error)
-          document.getElementById('as').setAttribute
         }
       }
     }

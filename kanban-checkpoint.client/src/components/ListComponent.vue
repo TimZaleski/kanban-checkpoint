@@ -1,12 +1,12 @@
 <template>
   <div class="col-3 min-vh-100 chalk-border chalk" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <div class="row">
+    <div class="row">
       <h1 class="chalk">
-      {{ listProp.title.toUpperCase() }}
-    </h1>
-    <ul>
-      <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
-    </ul>
+        {{ listProp.title.toUpperCase() }}
+      </h1>
+      <ul>
+        <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
+      </ul>
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
       },
       drop(ev) {
         ev.preventDefault()
-        var data = ev.dataTransfer.getData("text")
+        const data = ev.dataTransfer.getData('text')
         ev.target.appendChild(document.getElementById(data))
       }
     }
