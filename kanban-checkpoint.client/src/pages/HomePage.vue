@@ -1,6 +1,8 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center chalkboard">
-    <h1 class="chalk largeSize">CHALKBAN</h1>
+    <h1 class="chalk largeSize">
+      CHALKBAN
+    </h1>
   </div>
 </template>
 

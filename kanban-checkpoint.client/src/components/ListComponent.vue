@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 export default {
   name: 'List',
@@ -16,7 +16,7 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      tasks: computed(() => AppState.tasks.filter(t => t.listId == props.listProp.id))
+      tasks: computed(() => AppState.tasks.filter(t => t.listId === props.listProp.id))
     })
     return {
       state
@@ -24,7 +24,6 @@ export default {
   }
 }
 </script>
-
 
 <style>
 .chalk-border {

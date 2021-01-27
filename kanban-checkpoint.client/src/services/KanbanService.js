@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import Kanban from '../models/KanbanModel'
 import List from '../models/ListModel'
+import Task from '../models/TaskModel'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
