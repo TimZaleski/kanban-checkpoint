@@ -1,15 +1,10 @@
 <template>
-  <div class="col-3 min-vh-100 chalk-border chalk" @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone">
+  <div class="col-3 min-vh-100 chalk-border chalk">
     <div class="row">
-      <div class="col-12">
-        a
-      </div>
-      <div class="col">
-        <h1 class="chalk">
-          {{ listProp.title.toUpperCase() }}
-        </h1>
-      </div>
-      <ul>
+      <h1 class="chalk">
+        {{ listProp.title.toUpperCase() }}
+      </h1>
+      <ul @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone">
         <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
       </ul>
     </div>
@@ -31,11 +26,10 @@ export default {
     return {
       state,
       allowDrop() {
-        console.log('list drag')
       },
       drop() {
-        const data = event.dataTransfer.getData('text')
-        console.log(data)
+        console.log(event)
+        const data = event.dataTransfer.getData('application/x-moz-node')
         event.target.appendChild(document.getElementById(data))
       }
     }
