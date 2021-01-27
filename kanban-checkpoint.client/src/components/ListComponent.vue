@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 min-vh-100 chalk-border chalk" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <div class="col-3 min-vh-100 chalk-border chalk" @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone">
     <div class="row">
       <h1 class="chalk">
         {{ listProp.title.toUpperCase() }}
@@ -25,13 +25,13 @@ export default {
     })
     return {
       state,
-      allowDrop(ev) {
-        ev.preventDefault()
+      allowDrop() {
+        console.log('list drag')
       },
-      drop(ev) {
-        ev.preventDefault()
-        const data = ev.dataTransfer.getData('text')
-        ev.target.appendChild(document.getElementById(data))
+      drop() {
+        var data = event.dataTransfer.getData("text")
+        console.log(data)
+        event.target.appendChild(document.getElementById(data))
       }
     }
   }

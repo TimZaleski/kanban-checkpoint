@@ -1,5 +1,5 @@
 <template>
-  <li class="stickyNote" draggable="true" ondragstart="drag(event)">
+  <li class="stickyNote" draggable="true" :id="taskProp.id" @dragstart="drag()">
     <a href="#">
       <h2>{{ taskProp.title.toUpperCase() }}</h2>
     </a>
@@ -19,9 +19,8 @@ export default {
     })
     return {
       state,
-      drag(ev) {
-        alert('dragging')
-        ev.dataTransfer.setData('text', ev.target.id)
+      drag() {
+        event.dataTransfer.setData('text', event.target.id)
       }
     }
   }
