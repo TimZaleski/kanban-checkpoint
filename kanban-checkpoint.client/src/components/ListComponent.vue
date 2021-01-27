@@ -2,7 +2,7 @@
   <div class="col-3 min-vh-100 chalk-border chalk">
     <!-- <div class="row"> -->
     <h1 class="chalk">
-      LIST
+      {{ listProp.title }}
     </h1>
     <!-- <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" /> -->
     <!-- </div> -->
@@ -14,10 +14,10 @@ import { reactive } from 'vue'
 // import { AppState } from '../AppState'
 export default {
   name: 'List',
-  // props: {
-  //   listProp: { type: Object, required: true }
-  // },
-  setup() {
+  props: {
+    listProp: { type: Object, required: true }
+  },
+  setup(props) {
     const state = reactive({
       // tasks: computed(() => AppState.tasks.filter(t => t.listId === props.listProp.id))
     })
