@@ -4,7 +4,7 @@
       <h1 class="chalk">
         {{ listProp.title.toUpperCase() }}
       </h1>
-      <ul @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone">
+      <ul @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone" :id="listProp.id">
         <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
       </ul>
     </div>
@@ -28,9 +28,19 @@ export default {
       allowDrop() {
       },
       drop() {
-        console.log(event)
         const data = event.dataTransfer.getData('application/x-moz-node')
-        event.target.appendChild(document.getElementById(data))
+        if (event.target.nodeName == "LI")
+        {
+          event.target.parentNode.appendChild(document.getElementById(data))
+        }
+        else if (event.target.nodeName == "H2")
+        {
+          event.target.parentNode.parentNode.appendChild(document.getElementById(data))
+        }
+        else if (event.target.nodeName == "UL")
+        {
+          event.target.appendChild(document.getElementById(data))
+        }
       }
     }
   }
