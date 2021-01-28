@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 min-vh-100 chalk-border chalk">
+  <div class="col-3 min-vh-100 chalk-border">
     <div class="row">
       <div class="col-1 offset-9 justify-content-right">
         <button type="button" class="btn btn-outline-light text-center buttonStyle chalk pl-2 pb-0 pt-1 pr-1" @click="deleteList">
@@ -18,10 +18,12 @@
       </ul>
     </div>
     <div class="row">
-      <div class="col-1">
-        <button type="button" class="btn btn-outline-light text-center buttonStyle chalk pl-1 pb-0 pt-1 pr-1">
-          a
+      <div class="col">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-light chalk buttonStyle" data-toggle="modal" data-target="#createTaskModal">
+          a TASK
         </button>
+        <TaskModalComponent />
       </div>
     </div>
   </div>
