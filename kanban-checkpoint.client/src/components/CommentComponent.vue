@@ -4,6 +4,13 @@
 
 <script>
 export default {
+  name: 'CommentComponent',
+  props: {
+    commentProp: { type: Object, required: true }
+  },
+  setup(props) {
+
+  }
 
 }
 </script>

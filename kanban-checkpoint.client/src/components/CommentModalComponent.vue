@@ -33,9 +33,9 @@
               Add
             </button>
           </form>
-        <ul>
-          <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
-        </ul>
+          <ul>
+            <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+          </ul>
         </div>
       </div>
     </div>
