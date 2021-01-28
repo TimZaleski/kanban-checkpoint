@@ -32,6 +32,7 @@ import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { listService } from '../services/ListService'
+import { taskService } from '../services/TaskService'
 export default {
   name: 'ListComponent',
   props: {
@@ -54,11 +55,18 @@ export default {
       },
       drop() {
         const data = event.dataTransfer.getData('application/x-moz-node')
+        const newTask = AppState.tasks.find(t => t.id === data)
         if (event.target.nodeName === 'LI') {
+          newTask.listId = event.target.parentNode.id
+          taskService.edit(newTask, data)
           event.target.parentNode.appendChild(document.getElementById(data))
         } else if (event.target.nodeName === 'H2') {
+          newTask.listId = event.target.parentNode.parentNode.id
+          taskService.edit(newTask, data)
           event.target.parentNode.parentNode.appendChild(document.getElementById(data))
         } else if (event.target.nodeName === 'UL') {
+          newTask.listId = event.target.id
+          taskService.edit(newTask, data)
           event.target.appendChild(document.getElementById(data))
         }
       }
