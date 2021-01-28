@@ -14,7 +14,7 @@
 <script>
 import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
-import { taskService } from "../services/TaskService"
+import { taskService } from '../services/TaskService'
 export default {
   name: 'ListComponent',
   props: {
