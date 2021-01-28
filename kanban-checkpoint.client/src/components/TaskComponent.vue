@@ -1,12 +1,20 @@
 <template>
-  <li class="stickyNote" draggable="true" :id="taskProp.id" @dragstart="drag()" @click="openComments()">
-    <h2>{{ taskProp.title.toUpperCase() }}</h2>
+  <li class="row stickyNote" draggable="true" :id="taskProp.id" @dragstart="drag()" @click="openComments()">
+    <div class="col-1 offset-10 justify-content-right">
+      <button type="button" class="btn btn-outline-dark buttonStyle text-center pl-1 pb-0 pt-1 pr-1" @click="deleteTask">
+        X
+      </button>
+    </div>
+    <div class="col">
+      <h2>{{ taskProp.title.toUpperCase() }}</h2>
+    </div>
   </li>
 </template>
 
 <script>
 import { reactive } from 'vue'
 import { taskService } from '../services/TaskService'
+import { logger } from '../utils/Logger'
 export default {
   name: 'TaskComponent',
   props: {
@@ -17,6 +25,13 @@ export default {
     })
     return {
       state,
+      deleteTask() {
+        try {
+          taskService.delete(props.taskProp.id)
+        } catch (error) {
+          logger.error(error)
+        }
+      },
       drag() {
         event.dataTransfer.dropEffect = 'move'
         event.dataTransfer.effectAllowed = 'move'
@@ -26,7 +41,7 @@ export default {
         try {
           taskService.getCommentsById(props.taskProp.id)
         } catch (error) {
-          console.log(error)
+          logger.log(error)
         }
       }
     }
@@ -39,6 +54,10 @@ export default {
   font-family: "Reenie Beanie";
   src: local("Reenie Beanie"),
    url(../assets/font/ReenieBeanie-Regular.ttf) format("truetype");
+}
+
+.buttonStyle{
+  font-size: 2vh;
 }
 
 .chalk-border {
@@ -57,8 +76,10 @@ export default {
 }
 
 *{
-  margin:0;
-  padding:0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0 ;
+  padding-bottom: 0 ;
 }
 body{
   font-family:arial,sans-serif;

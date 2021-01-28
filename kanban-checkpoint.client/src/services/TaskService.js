@@ -43,7 +43,7 @@ class TaskService {
   async delete(taskId) {
     try {
       await api.delete('api/tasks/' + taskId)
-      AppState.tasks.filter(task => (task.id !== taskId))
+      AppState.tasks = AppState.tasks.filter(task => (task.id !== taskId))
     } catch (error) {
 
     }

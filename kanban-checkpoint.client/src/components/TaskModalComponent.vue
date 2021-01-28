@@ -1,7 +1,7 @@
 <template>
   <!-- Create Modal -->
   <div class="modal fade"
-       :id="'taskModal' + listProp.id" 
+       :id="'taskModal' + listProp.id"
        tabindex="-1"
        role="dialog"
        aria-labelledby="createTaskModal"
@@ -62,7 +62,6 @@ export default {
         try {
           state.newTask.listId = props.listProp.id
           state.newTask.kanbanId = route.params.id
-          console.log(props.listProp.id)
           await taskService.create(state.newTask)
           state.newTask = {}
           document.getElementById('closeModal').click()

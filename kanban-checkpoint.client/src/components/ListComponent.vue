@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row">
-      <ul @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone" :id="listProp.id">
+      <ul class="col" @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone" :id="listProp.id">
         <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
       </ul>
     </div>
