@@ -1,10 +1,10 @@
 <template>
-  <div class="row justify-content-between border border-bottom-dark">
+  <div class="row justify-content-between border-bottom border-bottom-dark">
     <div class="col-10">
-      <h6>{{ commentProp.body }}</h6>
-      <p v-if="commentProp.creator">
+      <p>{{ commentProp.body }}</p>
+      <h6 v-if="commentProp.creator">
         By: {{ commentProp.creator.name }}
-      </p>
+      </h6>
     </div>
     <div class="col-2">
       <button v-if="(commentProp.creatorId === state.account.id)" type="button" class="btn btn-danger buttonStyle py-1 px-2 m-1" @click="deleteComment">

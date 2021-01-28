@@ -18,18 +18,18 @@
           </button>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body pt-0">
           <div class="row">
             <div class="col">
               <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
             </div>
           </div>
           <form @submit.prevent="createComment">
-            <div class="input-group mb-3">
+            <div class="input-group my-3">
               <input type="text"
                      name="Comment Body"
                      id="CommentBody"
-                     class="form-control"
+                     class="form-control background-danger"
                      placeholder="Comment"
                      v-model="state.newComment.body"
               >
@@ -81,5 +81,15 @@ export default {
 </script>
 
 <style>
+.modal-content{
+  background-color: #ffc;
+}
+.modal-body{
+  color:rgb(0, 0, 0);
+  font-family: "Reenie Beanie";
+}
+input[type="text"], textarea {
+  background-color: #ffc;
 
+}
 </style>
