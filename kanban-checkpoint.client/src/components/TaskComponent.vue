@@ -2,11 +2,13 @@
   <li class="stickyNote" draggable="true" :id="taskProp.id" @dragstart="drag()" @click="openComments()">
     <h2>{{ taskProp.title.toUpperCase() }}</h2>
   </li>
+  <CommentModalComponent :task-prop="taskProp" />
 </template>
 
 <script>
 import { reactive } from 'vue'
 import { taskService } from '../services/TaskService'
+import $ from 'jquery'
 export default {
   name: 'TaskComponent',
   props: {
@@ -22,9 +24,10 @@ export default {
         event.dataTransfer.effectAllowed = 'move'
         event.dataTransfer.setData('application/x-moz-node', event.target.id)
       },
-      openComments() {
+      async openComments() {
         try {
-          taskService.getCommentsById(props.taskProp.id)
+          await taskService.getCommentsById(props.taskProp.id)
+          $('#commentModal' + props.taskProp.id).modal()
         } catch (error) {
           console.log(error)
         }

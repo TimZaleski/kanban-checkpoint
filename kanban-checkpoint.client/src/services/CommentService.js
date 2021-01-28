@@ -4,7 +4,7 @@ import { api } from './AxiosService'
 class CommentService {
   async getById(commentId) {
     try {
-      const res = await api.get('api/comment/' + commentId)
+      const res = await api.get('api/comments/' + commentId)
       AppState.activecomment = res.data.map(c => new Comment(c))
     } catch (error) {
 
@@ -13,7 +13,7 @@ class CommentService {
 
   async create(comment) {
     try {
-      const res = await api.post('api/comment', comment)
+      const res = await api.post('api/comments', comment)
       AppState.comments = [...AppState.comments, res.data.map(c => new Comment(c))]
     } catch (error) {
 
@@ -22,7 +22,7 @@ class CommentService {
 
   async edit(updatedcomment, commentId) {
     try {
-      const res = await api.put('api/comment/' + commentId, updatedcomment)
+      const res = await api.put('api/comments/' + commentId, updatedcomment)
       const index = AppState.comments.findIndex(comment => comment.id === res.data.id)
       AppState.comments.splice(index, 1, res.data)
     } catch (error) {
@@ -32,7 +32,7 @@ class CommentService {
 
   async delete(commentId) {
     try {
-      await api.delete('api/comment/' + commentId)
+      await api.delete('api/comments/' + commentId)
       AppState.comments.filter(comment => (comment.id !== commentId))
     } catch (error) {
 

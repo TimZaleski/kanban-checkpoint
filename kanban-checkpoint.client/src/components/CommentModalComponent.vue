@@ -1,17 +1,17 @@
 <template>
   <!-- Create Modal -->
   <div class="modal fade"
-       :id="'taskModal' + listProp.id"
+       :id="'commentModal' + taskProp.id"
        tabindex="-1"
        role="dialog"
-       aria-labelledby="createTaskModal"
+       aria-labelledby="createCommentModal"
        aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="createTaskModal">
-            Add A New Task
+          <h5 class="modal-title" id="createCommentModal">
+            Comments
           </h5>
           <button id="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -19,20 +19,23 @@
         </div>
 
         <div class="modal-body">
-          <form @submit.prevent="createTask">
+          <form @submit.prevent="createComment">
             <div class="form-group">
               <input type="text"
-                     name="Task title"
-                     id="TaskTitle"
+                     name="Comment Body"
+                     id="CommentBody"
                      class="form-control"
-                     placeholder="Task title"
-                     v-model="state.newTask.title"
+                     placeholder="Comment"
+                     v-model="state.newComment.body"
               >
             </div>
             <button type="submit" class="btn btn-success">
               Add
             </button>
           </form>
+        <ul>
+          <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+        </ul>
         </div>
       </div>
     </div>
@@ -41,31 +44,26 @@
 
 <script>
 import { computed, reactive } from 'vue'
-import { taskService } from '../services/TaskService'
+import { commentService } from '../services/CommentService'
 import { logger } from '../utils/Logger'
-import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 export default {
-  name: 'TaskModalComponent',
+  name: 'CommentModalComponent',
   props: {
-    listProp: { type: Object, required: true }
+    taskProp: { type: Object, required: true }
   },
   setup(props) {
-    const route = useRoute()
     const state = reactive({
-      newTask: {},
-      Tasks: computed(() => AppState.Tasks)
+      newComment: {},
+      comments: computed(() => AppState.comments.filter(c => c.taskId === props.taskProp.id))
     })
     return {
       state,
-      async createTask() {
+      async createComment() {
         try {
-          state.newTask.listId = props.listProp.id
-          state.newTask.kanbanId = route.params.id
-          console.log(props.listProp.id)
-          await taskService.create(state.newTask)
-          state.newTask = {}
-          document.getElementById('closeModal').click()
+          state.newComment.taskId = props.taskProp.id
+          await commentService.create(state.newComment)
+          state.newComment = {}
         } catch (error) {
           logger.error(error)
         }
