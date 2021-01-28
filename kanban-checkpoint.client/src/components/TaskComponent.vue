@@ -1,12 +1,13 @@
 <template>
-  <li class="stickyNote" draggable="true" :id="taskProp.id" @dragstart="drag()">
+  <li class="stickyNote" draggable="true" :id="taskProp.id" @dragstart="drag()" @click="openComments()">
     <h2>{{ taskProp.title.toUpperCase() }}</h2>
   </li>
 </template>
 
 <script>
 import { reactive } from 'vue'
-// import { AppState } from '../AppState'
+import { AppState } from '../AppState'
+import { taskService } from '../services/TaskService'
 export default {
   name: 'TaskComponent',
   props: {
@@ -23,6 +24,13 @@ export default {
         event.dataTransfer.effectAllowed = 'move'
         event.dataTransfer.setData('application/x-moz-node', event.target.id)
         console.log(event.dataTransfer)
+      },
+      openComments() {
+        try {
+          taskService.getCommentsById(props.taskProp.id)
+        } catch (error) {
+          console.log(error)
+        }
       }
     }
   }

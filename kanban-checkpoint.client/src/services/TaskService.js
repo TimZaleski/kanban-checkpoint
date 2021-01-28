@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
 import Task from '../models/TaskModel'
+import Comment from '../models/CommentModel'
 class TaskService {
   async getById(taskId) {
     try {
@@ -14,7 +15,7 @@ class TaskService {
   async getCommentsById(taskId) {
     try {
       const res = await api.get('api/tasks/' + taskId + '/comments')
-      AppState.tasks = res.data.map(t => new Task(t))
+      AppState.comments = res.data.map(c => new Comment(c))
     } catch (error) {
 
     }
