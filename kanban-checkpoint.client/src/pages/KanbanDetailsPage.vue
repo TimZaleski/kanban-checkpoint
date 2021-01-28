@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-grow-1 d-flex flex-column justify-content-center chalkboard container-fluid">
+  <div class="flex-grow-1 d-flex flex-column chalkboard container-fluid">
     <div class="row d-flex align-items-center">
       <div class="col-10">
         <h1 class="chalk largeSize" v-if="state.activeKanban.title">
