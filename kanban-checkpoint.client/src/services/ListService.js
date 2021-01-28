@@ -54,7 +54,7 @@ class ListService {
   async delete(listId) {
     try {
       await api.delete('api/lists/' + listId)
-      AppState.lists.filter(list => (list.id !== listId))
+      AppState.lists = AppState.lists.filter(list => (list.id !== listId))
     } catch (error) {
 
     }
