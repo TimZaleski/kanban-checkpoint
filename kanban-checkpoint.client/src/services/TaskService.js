@@ -24,7 +24,7 @@ class TaskService {
   async create(task) {
     try {
       const res = await api.post('api/tasks', task)
-      AppState.tasks = [...AppState.tasks, res.data.map(t => new Task(t))]
+      AppState.tasks = [...AppState.tasks, new Task(res.data)]
     } catch (error) {
 
     }

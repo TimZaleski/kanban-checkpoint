@@ -47,7 +47,10 @@ import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 export default {
   name: 'TaskModalComponent',
-  setup() {
+  props: {
+    listProp: { type: Object, required: true }
+  },
+  setup(props) {
     const route = useRoute()
     const state = reactive({
       newTask: {},
@@ -57,8 +60,9 @@ export default {
       state,
       async createTask() {
         try {
-          logger.log(route.params.id)
-          await taskService.create(state.newTask, route.params.id)
+          state.newTask.listId = props.listProp.id
+          state.newTask.kanbanId = route.params.id
+          await taskService.create(state.newTask)
           state.newTask = {}
           document.getElementById('closeModal').click()
         } catch (error) {

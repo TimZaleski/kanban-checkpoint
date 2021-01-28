@@ -23,7 +23,7 @@
         <button type="button" class="btn btn-outline-light chalk buttonStyle" data-toggle="modal" data-target="#createTaskModal">
           a TASK
         </button>
-        <TaskModalComponent />
+        <TaskModalComponent :list-prop="listProp" />
       </div>
     </div>
   </div>
