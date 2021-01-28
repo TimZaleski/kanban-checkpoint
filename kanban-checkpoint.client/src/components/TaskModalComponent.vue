@@ -13,7 +13,7 @@
           <h5 class="modal-title" id="createTaskModal">
             Add A New Task
           </h5>
-          <button id="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button :id="'closeModal' + listProp.id" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -64,7 +64,7 @@ export default {
           state.newTask.kanbanId = route.params.id
           await taskService.create(state.newTask)
           state.newTask = {}
-          document.getElementById('closeModal').click()
+          document.getElementById('closeModal' + props.listProp.id).click()
         } catch (error) {
           logger.error(error)
         }
