@@ -6,7 +6,6 @@
 
 <script>
 import { reactive } from 'vue'
-import { AppState } from '../AppState'
 import { taskService } from '../services/TaskService'
 export default {
   name: 'TaskComponent',
