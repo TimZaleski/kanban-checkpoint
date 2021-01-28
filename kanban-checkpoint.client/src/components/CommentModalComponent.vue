@@ -19,8 +19,13 @@
         </div>
 
         <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+            </div>
+          </div>
           <form @submit.prevent="createComment">
-            <div class="form-group">
+            <div class="input-group mb-3">
               <input type="text"
                      name="Comment Body"
                      id="CommentBody"
@@ -28,14 +33,13 @@
                      placeholder="Comment"
                      v-model="state.newComment.body"
               >
+              <div class="input-group-append">
+                <button class="btn btn-outline-dark" type="submit" id="button-addon2">
+                  Add
+                </button>
+              </div>
             </div>
-            <button type="submit" class="btn btn-success">
-              Add
-            </button>
           </form>
-          <div>
-            <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
-          </div>
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ class CommentService {
   async delete(commentId) {
     try {
       await api.delete('api/comments/' + commentId)
-      AppState.comments.filter(comment => (comment.id !== commentId))
+      AppState.comments = AppState.comments.filter(comment => (comment.id !== commentId))
     } catch (error) {
 
     }

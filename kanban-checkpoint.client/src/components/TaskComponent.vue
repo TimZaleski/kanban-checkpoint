@@ -1,7 +1,7 @@
 <template>
   <li class="row stickyNote" draggable="true" :id="taskProp.id" @dragstart="drag()" @click="openComments()">
     <div class="col-1 offset-10 justify-content-right">
-      <button type="button" class="btn btn-outline-dark buttonStyle text-center pl-1 pb-0 pt-1 pr-1" @click="deleteTask">
+      <button type="button" class="btn btn-outline-dark buttonStyle text-center pl-1 pb-0 pt-1 pr-1" @click.stop="deleteTask">
         X
       </button>
     </div>
@@ -17,6 +17,7 @@ import { reactive } from 'vue'
 import { taskService } from '../services/TaskService'
 import { logger } from '../utils/Logger'
 import $ from 'jquery'
+import { AppState } from '../AppState'
 export default {
   name: 'TaskComponent',
   props: {
@@ -41,6 +42,7 @@ export default {
       },
       async openComments() {
         try {
+          logger.log(AppState.account)
           await taskService.getCommentsById(props.taskProp.id)
           $('#commentModal' + props.taskProp.id).modal()
         } catch (error) {
