@@ -1,5 +1,6 @@
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
+import Comment from '../models/CommentModel'
 
 class CommentService {
   async getById(commentId) {
@@ -14,7 +15,7 @@ class CommentService {
   async create(comment) {
     try {
       const res = await api.post('api/comments', comment)
-      AppState.comments = [...AppState.comments, res.data.map(c => new Comment(c))]
+      AppState.comments.push(new Comment(res.data))
     } catch (error) {
 
     }

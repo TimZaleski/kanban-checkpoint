@@ -46,7 +46,7 @@ export default {
     })
     return {
       state,
-      deleteList() {
+      async deleteList() {
         try {
           listService.delete(props.listProp.id)
         } catch (error) {

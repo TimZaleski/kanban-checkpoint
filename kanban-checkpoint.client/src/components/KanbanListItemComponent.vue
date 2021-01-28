@@ -22,14 +22,14 @@ export default {
     })
     return {
       state,
-      deleteKanban() {
+      async deleteKanban() {
         try {
           kanbanService.delete(props.kanbanProp.id)
         } catch (error) {
           logger.error(error)
         }
       },
-      setActiveKanban() {
+      async setActiveKanban() {
         try {
           kanbanService.getById(props.kanbanProp.id)
         } catch (error) {

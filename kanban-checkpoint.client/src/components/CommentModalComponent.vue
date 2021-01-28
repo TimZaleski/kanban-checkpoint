@@ -33,9 +33,9 @@
               Add
             </button>
           </form>
-          <ul>
+          <div>
             <CommentComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
-          </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -55,7 +55,8 @@ export default {
   setup(props) {
     const state = reactive({
       newComment: {},
-      comments: computed(() => AppState.comments.filter(c => c.taskId === props.taskProp.id))
+      comments: computed(() => AppState.comments)
+      // .filter(c => c.taskId === props.taskProp.id)
     })
     return {
       state,

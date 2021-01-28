@@ -27,7 +27,7 @@ export default {
     })
     return {
       state,
-      deleteTask() {
+      async deleteTask() {
         try {
           taskService.delete(props.taskProp.id)
         } catch (error) {
