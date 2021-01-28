@@ -1,12 +1,28 @@
 <template>
   <div class="col-3 min-vh-100 chalk-border chalk">
     <div class="row">
-      <h1 class="chalk">
-        {{ listProp.title.toUpperCase() }}
-      </h1>
+      <div class="col-1 offset-9 justify-content-right">
+        <button type="button" class="btn btn-outline-light text-center buttonStyle chalk pl-2 pb-0 pt-1 pr-1" @click="deleteList">
+          X
+        </button>
+      </div>
+      <div class="col-12">
+        <h1 class="chalk">
+          {{ listProp.title.toUpperCase() }}
+        </h1>
+      </div>
+    </div>
+    <div class="row">
       <ul @drop="drop()" @dragover.prevent="allowDrop()" dropzone="zone" :id="listProp.id">
         <TaskComponent v-for="task in state.tasks" :key="task.id" :task-prop="task" />
       </ul>
+    </div>
+    <div class="row">
+      <div class="col-1">
+        <button type="button" class="btn btn-outline-light text-center buttonStyle chalk pl-1 pb-0 pt-1 pr-1">
+          a
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -14,6 +30,8 @@
 <script>
 import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
+import { listService } from '../services/ListService'
 import { taskService } from '../services/TaskService'
 export default {
   name: 'ListComponent',
@@ -26,6 +44,13 @@ export default {
     })
     return {
       state,
+      deleteList() {
+        try {
+          listService.delete(props.listProp.id)
+        } catch (error) {
+          logger.error(error)
+        }
+      },
       allowDrop() {
       },
       drop() {
@@ -50,7 +75,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .chalk-border {
   border: 25px solid rgba(255,255,255,.8);
   border-image: url("https://www.unicefusa.org/sites/default/files/answer-box.png") 20;
@@ -59,5 +84,16 @@ export default {
 .chalk{
   color:rgb(221, 221, 221);
   font-family: "PWChalk";
+}
+
+.hoverable {
+  cursor: pointer;
+}
+
+.buttonStyle{
+  font-size: 3vh;
+}
+.buttonStyle:hover{
+  color:rgb(34, 34, 34) !important;
 }
 </style>
