@@ -1,10 +1,10 @@
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
-
+import Task from '../models/TaskModel'
 class TaskService {
   async getById(taskId) {
     try {
-      const res = await api.get('api/task/' + taskId)
+      const res = await api.get('api/tasks/' + taskId)
       AppState.activeTask = res.data.map(t => new Task(t))
     } catch (error) {
 
@@ -13,7 +13,7 @@ class TaskService {
 
   async getCommentsById(taskId) {
     try {
-      const res = await api.get('api/task/' + taskId + '/comments')
+      const res = await api.get('api/tasks/' + taskId + '/comments')
       AppState.tasks = res.data.map(t => new Task(t))
     } catch (error) {
 
@@ -22,7 +22,7 @@ class TaskService {
 
   async create(task) {
     try {
-      const res = await api.post('api/task', task)
+      const res = await api.post('api/tasks', task)
       AppState.tasks = [...AppState.tasks, res.data.map(t => new Task(t))]
     } catch (error) {
 
@@ -31,7 +31,7 @@ class TaskService {
 
   async edit(updatedtask, taskId) {
     try {
-      const res = await api.put('api/task/' + taskId, updatedtask)
+      const res = await api.put('api/tasks/' + taskId, updatedtask)
       const index = AppState.tasks.findIndex(task => task.id === res.data.id)
       AppState.tasks.splice(index, 1, res.data)
     } catch (error) {
@@ -41,7 +41,7 @@ class TaskService {
 
   async delete(taskId) {
     try {
-      await api.delete('api/task/' + taskId)
+      await api.delete('api/tasks/' + taskId)
       AppState.tasks.filter(task => (task.id !== taskId))
     } catch (error) {
 
