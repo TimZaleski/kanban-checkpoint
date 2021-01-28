@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-light chalk buttonStyle" data-toggle="modal" data-target="#createTaskModal">
+        <button type="button" class="btn btn-outline-light chalk buttonStyle" data-toggle="modal" :data-target="'#taskModal' + listProp.id">
           a TASK
         </button>
         <TaskModalComponent :list-prop="listProp" />

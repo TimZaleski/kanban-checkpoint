@@ -18,11 +18,9 @@ export default {
     return {
       state,
       drag() {
-        console.log(event.target)
         event.dataTransfer.dropEffect = 'move'
         event.dataTransfer.effectAllowed = 'move'
         event.dataTransfer.setData('application/x-moz-node', event.target.id)
-        console.log(event.dataTransfer)
       },
       openComments() {
         try {
